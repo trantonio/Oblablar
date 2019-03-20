@@ -21,19 +21,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("principal.fxml"));
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root, 1024 , 700));
         primaryStage.setResizable(false);
-        Text tx = new Text();
-        Button bt = new Button("btCheck");
-
-        bt.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                tx.setText("Accepted");
-            }
-        });
 
 
         primaryStage.show();
