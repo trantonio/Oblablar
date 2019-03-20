@@ -30,10 +30,8 @@ public class Controller implements Initializable {
 //        taWords.setText("Area");
 
     }
-
     @FXML
     private void btPlay(ActionEvent event) throws IOException {
-
         System.out.println("Boton del play");
 //        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 //        Scene scene = new Scene(root);
