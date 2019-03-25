@@ -16,7 +16,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Button>
-      <TextField fx:id="taWords" GridPane.rowIndex="4" />
+      <TextField fx:id="taWords" onAction="#onEnter" GridPane.rowIndex="4" />
       <Button mnemonicParsing="false" onAction="#btCheck" text="Check" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Text fx:id="txWords" strokeType="OUTSIDE" strokeWidth="0.0" text="Press &quot;Check&quot; to Start!" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
    </children>
