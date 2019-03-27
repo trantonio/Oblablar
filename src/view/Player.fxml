@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
@@ -16,18 +17,24 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Button>
-      <TextField fx:id="taWords" onAction="#onEnter" GridPane.rowIndex="4" />
+      <TextField fx:id="tfWords" onAction="#onEnter" GridPane.rowIndex="4" />
       <Button mnemonicParsing="false" onAction="#btCheck" text="Check" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Text fx:id="txWords" strokeType="OUTSIDE" strokeWidth="0.0" text="Press &quot;Check&quot; to Start!" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Text fx:id="txWords" strokeType="OUTSIDE" strokeWidth="0.0" text="Press &quot;Check&quot; to Start!" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="00:00" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+      <Text boundsType="LOGICAL_VERTICAL_CENTER" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="999" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="OpenSymbol" size="50.0" />
+         </font>
+      </Text>
    </children>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />

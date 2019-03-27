@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -18,14 +19,36 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-
+    //Creamos la clase juego que controla el juego principal
     Juego j = new Juego();
-
+    // String que controla la parabra aleatoria que aparece.
     private String word = j.randomWord();
+    //Controlamos que el juego ha empezado
     private boolean start = true;
-    Stage settingWindows = new Stage();
+    //Ventana emergente de ajustes
+    static Stage settingWindows = new Stage();
+
+
     @FXML
-    private TextField taWords;
+    private TextField tfLoggin;
+
+    @FXML
+    private TextField tfPassword;
+
+    @FXML
+    ImageView imgIcon;
+    @FXML
+    private void btLoggin(ActionEvent e) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/principal.fxml"));
+        Scene scene = new Scene(root, 1024, 720);
+        Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        appStage.setScene(scene);
+        appStage.toFront();
+        appStage.show();
+    }
+
+    @FXML
+    private TextField tfWords;
 
     @FXML
     private Text txWords;
@@ -42,7 +65,7 @@ public class Controller implements Initializable {
     @FXML
     private void btPlay(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Player.fxml"));
         Scene scene = new Scene(root, 1024, 720);
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         appStage.setScene(scene);
@@ -53,7 +76,7 @@ public class Controller implements Initializable {
     //Abre la ventana de los ajustes
     @FXML
     private void btSettings(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
         settingWindows.setScene(new Scene(root, 450, 400));
         settingWindows.show();
 
@@ -65,13 +88,11 @@ public class Controller implements Initializable {
         Platform.exit();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
     //Comprueba que la palabra esta correcta y añade una nueva
     public void checkCorrect() {
-        String wordField = taWords.getText();
+
+
+        String wordField = tfWords.getText();
         if (start) {
             start = false;
         } else {
@@ -84,10 +105,9 @@ public class Controller implements Initializable {
         }
         word = j.randomWord();
         txWords.setText(word);
-        taWords.setText("");
+        tfWords.setText("");
 
     }
-
     @FXML
     private void btReturn(ActionEvent e) {
         settingWindows.close();
@@ -111,6 +131,11 @@ public class Controller implements Initializable {
 //                }
 //            }
 //        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 }
