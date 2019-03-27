@@ -8,8 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -28,7 +30,8 @@ public class Controller implements Initializable {
     //Ventana emergente de ajustes
     static Stage settingWindows = new Stage();
 
-
+    //mensaje corto
+    final Label message = new Label("");
     @FXML
     private TextField tfLoggin;
 
@@ -39,12 +42,22 @@ public class Controller implements Initializable {
     ImageView imgIcon;
     @FXML
     private void btLoggin(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/principal.fxml"));
-        Scene scene = new Scene(root, 1024, 720);
-        Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        appStage.setScene(scene);
-        appStage.toFront();
-        appStage.show();
+
+        if (!tfPassword.getText().equals("abc")) {
+            message.setText("Your password is incorrect!");
+            message.setTextFill(Color.web("red"));
+        } else {
+            message.setText("Your password has been confirmed");
+            message.setTextFill(Color.web("black"));
+            Parent root = FXMLLoader.load(getClass().getResource("../view/principal.fxml"));
+            Scene scene = new Scene(root, 1024, 720);
+            Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            appStage.setScene(scene);
+            appStage.toFront();
+            appStage.show();
+        }
+        tfPassword.setText("");
+
     }
 
     @FXML
