@@ -2,12 +2,14 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -30,8 +32,11 @@ public class Controller implements Initializable {
     //Ventana emergente de ajustes
     static Stage settingWindows = new Stage();
 
+    //Creamos el parent que lo utilizaremos para abrir el layout correspondiente
+    Parent root;
+
     //mensaje corto
-    final Label message = new Label("");
+    final Alert message = new Alert(Alert.AlertType.INFORMATION);
     @FXML
     private TextField tfLoggin;
 
@@ -43,23 +48,31 @@ public class Controller implements Initializable {
     @FXML
     private void btLoggin(ActionEvent e) throws IOException {
 
-        if (!tfPassword.getText().equals("abc")) {
-            message.setText("Your password is incorrect!");
-            message.setTextFill(Color.web("red"));
+        if (!tfPassword.getText().equals("12345")) {
+            message.setContentText("Your password is incorrect!");
+            message.setHeaderText(null);
+            message.show();
+            System.out.println("Your password is incorrect!");
+//            tfPassword.setTextFill(Color.web("red"));
         } else {
-            message.setText("Your password has been confirmed");
-            message.setTextFill(Color.web("black"));
-            Parent root = FXMLLoader.load(getClass().getResource("../view/principal.fxml"));
+//            message.setText("Your password has been confirmed");
+//            message.setTextFill(Color.web("black"));
+            root = FXMLLoader.load(getClass().getResource("../view/principal.fxml"));
             Scene scene = new Scene(root, 1024, 720);
-            Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            appStage.setScene(scene);
-            appStage.toFront();
-            appStage.show();
+            Stage stPrincipal = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stPrincipal.setScene(scene);
+            stPrincipal.toFront();
+            stPrincipal.show();
         }
         tfPassword.setText("");
 
     }
 
+    @FXML
+    public void tfPassEnter(ActionEvent e){
+        System.out.println();
+        System.out.println("wiiii");
+    }
     @FXML
     private TextField tfWords;
 
@@ -72,24 +85,24 @@ public class Controller implements Initializable {
 
     @FXML
     public void onEnter(ActionEvent event) {
-        checkCorrect();
+            checkCorrect();
     }
 
     @FXML
     private void btPlay(ActionEvent event) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Player.fxml"));
+        root = FXMLLoader.load(getClass().getResource("../view/Player.fxml"));
         Scene scene = new Scene(root, 1024, 720);
-        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        appStage.setScene(scene);
-        appStage.toFront();
-        appStage.show();
+        Stage stPlayer = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stPlayer.setScene(scene);
+        stPlayer.toFront();
+        stPlayer.show();
 
     }
     //Abre la ventana de los ajustes
     @FXML
     private void btSettings(ActionEvent e) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
+        root = FXMLLoader.load(getClass().getResource("../view/settings.fxml"));
         settingWindows.setScene(new Scene(root, 450, 400));
         settingWindows.show();
 
@@ -101,9 +114,11 @@ public class Controller implements Initializable {
         Platform.exit();
     }
 
+    public void checkLoggin(){
+
+    }
     //Comprueba que la palabra esta correcta y añade una nueva
     public void checkCorrect() {
-
 
         String wordField = tfWords.getText();
         if (start) {
